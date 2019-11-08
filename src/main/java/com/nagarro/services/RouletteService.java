@@ -5,6 +5,8 @@ import com.nagarro.dto.BlockAmountResponse;
 import com.nagarro.dto.CustomerResponse;
 import com.nagarro.dto.LeaderBoardResponse;
 import com.nagarro.dto.LoginResponse;
+import com.nagarro.dto.PlayRequest;
+import com.nagarro.dto.PlayResponse;
 
 /**
  * This interface offers services to the RouletteResource.
@@ -63,4 +65,20 @@ public interface RouletteService {
 	 * @return LeaderBoardResponse that has a success status and top 5 customers
 	 */
 	public LeaderBoardResponse getLeaderBoard();
+
+	/**
+	 * This method accepts customer ID and play request object. PlayRequest object
+	 * contains the bet details of the customer and is used to calculate the bet
+	 * results. First, blockAmount method is called that blocks the customer's
+	 * balance for the bet. Then, roulette number is generated. At last, bet result
+	 * is evaluated using the roulette number and PlayRequest object and
+	 * PlayResponse is prepared accordingly.
+	 * 
+	 * 
+	 * @param customerId  Unique ID of customer
+	 * @param playRequest contains betting details of the customer
+	 * @return PlayResponse that has success status, roulette number, bet result and
+	 *         updated balance.
+	 */
+	public PlayResponse play(String customerId, PlayRequest playRequest);
 }
